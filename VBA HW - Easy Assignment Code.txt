@@ -1,0 +1,49 @@
+Sub ticker_counter()
+
+ 
+ Dim Ticker As String
+
+  Dim volumn_Total As Double
+  volumn_Total = 0
+
+  lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+  Dim Summary_Table_Row As Integer
+  Summary_Table_Row = 2
+Cells(1, 9).Value = "ticker"
+Cells(1, 10).Value = "Total"
+
+  
+  For i = 2 To lastrow
+
+  
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+   
+      Ticker = Cells(i, 1).Value
+
+      
+      volumn_Total = volumn_Total + Cells(i, 7).Value
+
+     
+      Range("I" & Summary_Table_Row).Value = Ticker
+
+     
+      Range("J" & Summary_Table_Row).Value = volumn_Total
+
+   
+      Summary_Table_Row = Summary_Table_Row + 1
+      
+     
+      volumn_Total = 0
+
+
+    Else
+
+      
+      volumn_Total = volumn_Total + Cells(i, 7).Value
+
+    End If
+
+  Next i
+
+End Sub
